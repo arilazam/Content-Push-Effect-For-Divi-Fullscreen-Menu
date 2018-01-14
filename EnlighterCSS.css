@@ -1,0 +1,74 @@
+/* Content Push Effect For Divi Fullscreen Menu */
+/* hide hirozontal scrollbar */
+html, body {
+  overflow-x: hidden;
+}
+/* set the page content transition and make sure the horisontal scrollbar is hidden */
+#main-header,
+#et-main-area {
+  overflow-x: hidden;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+          transition: transform 0.5s ease-in-out;	
+}
+/* move page content to right when fullscreen menu opened */
+#main-header.fullscreen_menu_opened,
+#et-main-area.fullscreen_menu_opened {
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%);
+}
+/* create a fullscreen overlay for page content */
+#main-header::after,
+#et-main-area::after {
+  content: '';
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+    z-index: 9999;
+  background: rgba(0,0,0,0.4);
+  -webkit-transition: opacity 0.5s, visibility 0s 0.5s;
+          transition: opacity 0.5s, visibility 0s 0.5s;
+}
+/* make page content overlay visible when fullscreen menu opened */
+#main-header.fullscreen_menu_opened::after,
+#et-main-area.fullscreen_menu_opened::after {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity 0.5s;
+          transition: opacity 0.5s;
+}
+/* set fullscreen menu container transition and opacity */
+.et_slide_in_menu_container {
+    opacity: 1 !important;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  -webkit-transition: -webkit-transform 0.5s, visibility 0.5s ease-in-out !important;
+          transition: transform 0.5s, visibility 0.5s ease-in-out !important;
+}
+/* move fullscreen menu into viewport when menu opened */
+.et_slide_in_menu_container.et_pb_fullscreen_menu_opened {
+    -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+  -webkit-transition: -webkit-transform 0.5s;
+          transition: transform 0.5s;
+}
+/* override default transition of menu items */
+.et_pb_fullscreen_menu_opened .et_mobile_menu li {
+    -webkit-transition: opacity 0.5s ease !important;
+            transition: opacity 0.5s ease !important;
+}
+
+@media (max-width: 980px) {
+/* override default transition of main header on mobile */
+    .et_fixed_nav #main-header, 
+    .et_non_fixed_nav.et_transparent_nav #main-header {
+    -webkit-transition: -webkit-transform 0.5s ease-in-out;
+            transition: transform 0.5s ease-in-out;	
+    }
+}
+/* End Content Push Effect For Divi Fullscreen Menu */
